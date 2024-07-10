@@ -1,4 +1,6 @@
 "use strict";
+const { compareSync } = require("bcryptjs");
+const { signToken } = require("../helpers/jwt");
 
 const { User } = require("../models");
 
@@ -16,13 +18,11 @@ class Controller {
         password,
       });
 
-      res
-        .status(201)
-        .json({
-          id: newUser.id,
-          username: newUser.username,
-          email: newUser.email,
-        });
+      res.status(201).json({
+        id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+      });
     } catch (error) {
       next(error);
     }
