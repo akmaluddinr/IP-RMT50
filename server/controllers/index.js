@@ -24,6 +24,7 @@ class Controller {
         email: newUser.email,
       });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
@@ -43,6 +44,7 @@ class Controller {
       const token = signToken({ id: user.id });
       res.json({ access_token: token });
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

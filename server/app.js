@@ -12,5 +12,5 @@ app.use(require("./routes"));
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`You are listening on port ${port}`);
 });

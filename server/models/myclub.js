@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       clubId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: { msg: "Club already added" },
         validate: {
           notNull: { msg: "Club ID is required" },
           notEmpty: { msg: "Club ID is required" },
