@@ -61,6 +61,27 @@ class ClubController {
       next(error);
     }
   }
+
+  static async getClubById(req, res, next) {
+    try {
+      const { clubId } = req.params;
+      const { data } = await axios({
+        url: "https://api-football-v1.p.rapidapi.com/v3/teams",
+        headers: {
+          "x-rapidapi-key":
+            "3f7e6f7025mshc5c71cdcd34363bp12e7fdjsn8ccf91420ba7",
+        },
+        params: {
+          id: clubId,
+        },
+      });
+      if (!data) throw { name: "dataNotFound" };
+      res.json(data.response[0]);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
 }
 
 module.exports = ClubController;
