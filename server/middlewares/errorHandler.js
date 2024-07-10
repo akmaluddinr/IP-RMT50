@@ -18,6 +18,10 @@ function errorHandler(err, req, res, next) {
       status = 400;
       message = "Username is required";
       break;
+    case "alreadyAdded":
+      status = 400;
+      message = "Club already added";
+      break;
     case "invalidInput":
       status = 400;
       message = "Email or password is required";

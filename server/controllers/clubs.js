@@ -33,6 +33,11 @@ class ClubController {
     try {
       const { clubId } = req.body;
       const userId = req.user.id;
+      const clubs = await MyClub.findAll({ where: { userId } });
+      const club = clubs.find((e) => {
+        return e.clubId === clubId;
+      });
+      if (club) throw { name: "alreadyAdded" };
       const { data } = await axios({
         url: "https://api-football-v1.p.rapidapi.com/v3/teams",
         headers: {
@@ -77,6 +82,33 @@ class ClubController {
       });
       if (!data) throw { name: "dataNotFound" };
       res.json(data.response[0]);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async getMyClubs(req, res, next) {
+    try {
+      const userId = req.user.id;
+      const myClubs = await MyClub.findAll({
+        where: { userId },
+      });
+      res.json(myClubs);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async deleteClubById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const club = await MyClub.findByPk(id);
+      await club.destroy();
+      res.json({
+        message: `Club ${club.name} was deleted successfully`,
+      });
     } catch (error) {
       console.log(error);
       next(error);
