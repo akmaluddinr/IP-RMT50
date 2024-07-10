@@ -14,40 +14,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   UserProfile.init(
     {
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "First name is required" },
-          notEmpty: { msg: "First name is required" },
-        },
-      },
+      firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      gender: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "Gender is required" },
-          notEmpty: { msg: "Gender is required" },
-        },
-      },
-      cityOfOrigin: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "City of origin is required" },
-          notEmpty: { msg: "City of origin is required" },
-        },
-      },
+      gender: DataTypes.STRING,
+      cityOfOrigin: DataTypes.STRING,
       description: DataTypes.STRING,
-      position: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "Position is required" },
-          notEmpty: { msg: "Position is required" },
-        },
-      },
+      position: DataTypes.STRING,
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,

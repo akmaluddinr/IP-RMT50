@@ -11,25 +11,21 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       lastName: {
         type: Sequelize.STRING,
       },
       gender: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       cityOfOrigin: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       description: {
         type: Sequelize.STRING,
       },
       position: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       userId: {
         type: Sequelize.INTEGER,

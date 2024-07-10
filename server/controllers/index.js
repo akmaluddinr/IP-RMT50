@@ -2,7 +2,7 @@
 const { compareSync } = require("bcryptjs");
 const { signToken } = require("../helpers/jwt");
 
-const { User } = require("../models");
+const { User, UserProfile } = require("../models");
 
 class Controller {
   static async register(req, res, next) {
@@ -16,6 +16,10 @@ class Controller {
         username,
         email,
         password,
+      });
+
+      await UserProfile.create({
+        userId: newUser.id,
       });
 
       res.status(201).json({

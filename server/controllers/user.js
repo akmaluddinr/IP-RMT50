@@ -3,18 +3,19 @@
 const { User, UserProfile, MyClub } = require("../models");
 
 class UserController {
-  static async addProfile(req, res, next) {
+  static async editProfile(req, res, next) {
     try {
       const userId = req.user.id;
-      const newProfile = await UserProfile.create({
+      const profile = await UserProfile.findOne({ where: { userId } });
+      const updatedProfile = await profile.update({
         ...req.body,
         userId: userId,
       });
-      res.status(201).json({
-        firstName: newProfile.firstName,
-        gender: newProfile.gender,
-        cityOfOrigin: newProfile.cityOfOrigin,
-        position: newProfile.position,
+      res.status(200).json({
+        firstName: updatedProfile.firstName,
+        gender: updatedProfile.gender,
+        cityOfOrigin: updatedProfile.cityOfOrigin,
+        position: updatedProfile.position,
       });
     } catch (error) {
       console.log(error);
