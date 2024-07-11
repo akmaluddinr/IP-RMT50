@@ -12,5 +12,6 @@ router.delete(
   authorization,
   ClubController.deleteClubById
 );
+router.get("/gemini", ClubController.gemini);
 
 module.exports = router;

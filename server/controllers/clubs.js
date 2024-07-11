@@ -2,6 +2,7 @@
 
 const { MyClub } = require("../models");
 const axios = require("axios");
+const gemini = require("../helpers/gemini");
 
 class ClubController {
   static async getClubs(req, res, next) {
@@ -109,6 +110,17 @@ class ClubController {
       res.json({
         message: `Club ${club.name} was deleted successfully`,
       });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async gemini(req, res, next) {
+    try {
+      const { prompt } = req.body;
+      let response = await gemini(prompt);
+      res.send(response);
     } catch (error) {
       console.log(error);
       next(error);
