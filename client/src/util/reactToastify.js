@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function errorHandler(msg) {
+export function errorHandler(msg) {
   toast.error(msg, {
     position: "top-right",
     autoClose: 2000,
@@ -12,4 +12,17 @@ export default function errorHandler(msg) {
     progress: undefined,
     theme: "dark",
   });
+}
+
+export function successHandler(msg) {
+  toast.success(msg, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
 }

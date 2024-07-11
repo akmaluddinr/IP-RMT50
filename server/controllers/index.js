@@ -1,8 +1,9 @@
 "use strict";
 const { compareSync } = require("bcryptjs");
 const { signToken } = require("../helpers/jwt");
-
 const { User, UserProfile } = require("../models");
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client();
 
 class Controller {
   static async register(req, res, next) {
@@ -50,6 +51,32 @@ class Controller {
 
       const token = signToken({ id: user.id });
       res.json({ access_token: token });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async loginGoogle(req, res, next) {
+    try {
+      console.log(req.body);
+      const { googleToken } = req.body;
+      const ticket = await client.verifyIdToken({
+        idToken: googleToken,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
+      const [user, created] = await User.findOrCreate({
+        where: { email: payload.email },
+        hooks: false,
+        defaults: {
+          username: payload.given_name,
+          email: payload.email,
+          password: Math.random().toString(),
+        },
+      });
+      const token = signToken({ id: user.id });
+      res.status(created ? 201 : 200).json({ access_token: token });
     } catch (error) {
       console.log(error);
       next(error);

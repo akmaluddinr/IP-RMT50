@@ -4,10 +4,11 @@ const router = require("express").Router();
 
 router.post("/register", Controller.register);
 router.post("/login", Controller.login);
+router.post("/login-google", Controller.loginGoogle);
 
 router.use(authentication);
 
 router.use(require("./users"));
-router.use(require('./clubs'))
+router.use(require("./clubs"));
 
 module.exports = router;
