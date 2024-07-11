@@ -3,6 +3,7 @@ const { authorization } = require("../middlewares/authorization");
 
 const router = require("express").Router();
 
+router.get("/clubs/leagues", ClubController.getLeagues);
 router.get("/clubs/league/:leagueId", ClubController.getClubs);
 router.post("/clubs/my-clubs", ClubController.addClub);
 router.get("/clubs/my-clubs", ClubController.getMyClubs);

@@ -5,8 +5,36 @@ const axios = require("axios");
 const gemini = require("../helpers/gemini");
 
 class ClubController {
+  
+  static async getLeagues(req, res, next) {
+    try {
+      const array = [39, 140, 135, 78, 61, 88];
+      const leagues = [];
+      for (let i = 0; i < array.length; i++) {
+        const { data } = await axios({
+          url: "https://api-football-v1.p.rapidapi.com/v3/standings",
+          headers: {
+            "x-rapidapi-key":
+              "3f7e6f7025mshc5c71cdcd34363bp12e7fdjsn8ccf91420ba7",
+          },
+          params: {
+            league: array[i],
+            season: 2023,
+          },
+        });
+        let league = data.response[0].league;
+        leagues.push(league);
+      }
+      res.json(leagues);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
   static async getClubs(req, res, next) {
     try {
+      console.log(req.params);
       const { leagueId } = req.params;
       const { data } = await axios({
         url: "https://api-football-v1.p.rapidapi.com/v3/standings",

@@ -1,7 +1,7 @@
 export default function Button(props) {
-  const { className, type, label } = props;
+  const { className, type, label, fn } = props;
   return (
-    <button className={className} type={type}>
+    <button className={className} type={type} onClick={fn}>
       {label}
     </button>
   );
