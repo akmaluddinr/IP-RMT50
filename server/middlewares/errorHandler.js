@@ -14,6 +14,10 @@ function errorHandler(err, req, res, next) {
       status = 404;
       message = "Data not found";
       break;
+    case "alreadyRegistered":
+      status = 400;
+      message = "You are already registered, please login.";
+      break;
     case "usernameRequired":
       status = 400;
       message = "Username is required";

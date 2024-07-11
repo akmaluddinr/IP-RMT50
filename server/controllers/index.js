@@ -12,6 +12,9 @@ class Controller {
       if (!email) throw { name: "invalidInput" };
       if (!password) throw { name: "invalidInput" };
 
+      const user = await User.findOne({ where: { email } });
+      if (user) throw { name: "alreadyRegistered" };
+
       const newUser = await User.create({
         username,
         email,
