@@ -3,7 +3,10 @@ import { errorHandler } from "../util/reactToastify";
 import axios from "axios";
 
 export default function Oasis() {
-  const [data, setData] = useState("");
+  const [name, setName] = useState("");
+  const [born, setBorn] = useState("");
+  const [country, setCountry] = useState("");
+  const [achievments, setAchievments] = useState([]);
 
   const [input, setInput] = useState("");
 
@@ -21,7 +24,10 @@ export default function Oasis() {
         },
       });
       console.log(data);
-      // setData(data);
+      setName(data.name);
+      setBorn(data.born);
+      setCountry(data.country);
+      setAchievments(data.achievments);
     } catch (error) {
       const message = error.response.data.message || error.message;
       errorHandler(message);
@@ -29,6 +35,8 @@ export default function Oasis() {
   };
   return (
     <div className="w-1/2 mx-auto mt-12">
+      <h2 className="text-2xl">Enhance your knowledge about football here</h2>
+      <h3 className="text-lg text-center py-3">Ask any question</h3>
       <form className="flex flex-col space-y-3" onSubmit={fetchData}>
         <input
           className="border-2"
@@ -45,12 +53,18 @@ export default function Oasis() {
           Submit
         </button>
       </form>
-      <input
-        type="textarea"
-        className="border-2 mt-10 w-full h-[300px]"
-        value={data}
-        readOnly
-      />
+
+      {name && (
+        <ul className="mt-6">
+          <li className="border-2">Name: {name}</li>
+          <li className="border-2">Born: {born}</li>
+          <li className="border-2">Country: {country}</li>
+          <li className="border-2">Achievments: </li>
+          {achievments.map((e, index) => {
+            return <li className="border-2" key={index}>{e.title}</li>;
+          })}
+        </ul>
+      )}
     </div>
   );
 }

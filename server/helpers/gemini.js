@@ -9,7 +9,13 @@ const model = genAI.getGenerativeModel({
 });
 
 module.exports = async function gemini(value) {
-  const prompt = `${value}. The format must be string`;
+  const prompt = `Create a short profile about a football player, named ${value}. The response must be JSON format. Your response must be a JSON object containing 3 recipes. A recipe object has the following schema: {
+  "name": "",
+  "born": "",
+  "country": "",
+  "achievments": [
+  {"": ::},
+  ...]}`;
 
   const result = await model.generateContent(prompt);
   const response = result.response;
