@@ -4,10 +4,12 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import MyProfile from "./pages/MyProfile";
 import Leagues from "./pages/Leagues";
-import Articles from "./pages/Articles";
+import Articles from "./pages/Oasis";
 import AllUsers from "./pages/Users";
 import MainLayout from "./layouts/MainLayout";
 import Clubs from "./pages/Clubs";
+import MyClubs from "./pages/MyClubs";
+import Oasis from "./pages/Oasis";
 
 export const router = createBrowserRouter([
   {
@@ -48,8 +50,8 @@ export const router = createBrowserRouter([
         element: <Leagues />,
       },
       {
-        path: "/articles",
-        element: <Articles />,
+        path: "/oasis",
+        element: <Oasis />,
       },
       {
         path: "/users",
@@ -58,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/clubs/:id",
         element: <Clubs />,
+      },
+      {
+        path: "/myclubs",
+        element: <MyClubs />,
       },
     ],
   },

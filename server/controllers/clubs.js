@@ -5,7 +5,6 @@ const axios = require("axios");
 const gemini = require("../helpers/gemini");
 
 class ClubController {
-  
   static async getLeagues(req, res, next) {
     try {
       const array = [39, 140, 135, 78, 61, 88];
@@ -60,29 +59,18 @@ class ClubController {
 
   static async addClub(req, res, next) {
     try {
-      const { clubId } = req.body;
+      const { clubId, clubName, imgUrl } = req.body;
       const userId = req.user.id;
       const clubs = await MyClub.findAll({ where: { userId } });
       const club = clubs.find((e) => {
         return e.clubId === clubId;
       });
       if (club) throw { name: "alreadyAdded" };
-      const { data } = await axios({
-        url: "https://api-football-v1.p.rapidapi.com/v3/teams",
-        headers: {
-          "x-rapidapi-key":
-            "3f7e6f7025mshc5c71cdcd34363bp12e7fdjsn8ccf91420ba7",
-        },
-        params: {
-          id: clubId,
-        },
-      });
-      const { id, name, logo } = data.response[0].team;
 
       const addedClub = await MyClub.create({
-        name: name,
-        imgUrl: logo,
-        clubId: id,
+        name: clubName,
+        imgUrl: imgUrl,
+        clubId: clubId,
         userId: userId,
       });
       res.status(201).json({

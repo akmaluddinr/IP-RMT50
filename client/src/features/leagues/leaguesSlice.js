@@ -27,6 +27,7 @@ export default leaguesSlice.reducer;
 export const fetchLeagues = () => {
   return async function (dispatch) {
     try {
+      dispatch(setLoading(true));
       const { data } = await axios({
         url: "http://localhost:3000/clubs/leagues",
         headers: {
@@ -34,6 +35,7 @@ export const fetchLeagues = () => {
         },
       });
       dispatch(setLeagues(data));
+      dispatch(setLoading(false));
     } catch (error) {
       const message = error.response.data.message || error.message;
       errorHandler(message);

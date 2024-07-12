@@ -9,7 +9,7 @@ const model = genAI.getGenerativeModel({
 });
 
 module.exports = async function gemini(value) {
-  const prompt = `Write a profile about ${value}.`;
+  const prompt = `${value}. The format must be string`;
 
   const result = await model.generateContent(prompt);
   const response = result.response;

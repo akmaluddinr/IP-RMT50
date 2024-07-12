@@ -61,14 +61,14 @@ export default function Navbar() {
         </div>
         <div>
           <NavLink
-            to="/articles"
+            to="/oasis"
             className={({ isActive }) =>
               isActive
                 ? "font-semibold tracking-wider uppercase text-violet-700 px-2 hover:text-violet-700"
                 : "font-semibold tracking-wider uppercase text-slate-800 px-2 hover:text-violet-700"
             }
           >
-            Articles
+            OASIS
           </NavLink>
         </div>
       </div>
