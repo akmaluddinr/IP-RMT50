@@ -36,10 +36,10 @@ export default function Oasis() {
   return (
     <div className="w-1/2 mx-auto mt-12">
       <h2 className="text-2xl">Enhance your knowledge about football here</h2>
-      <h3 className="text-lg text-center py-3">Ask any question</h3>
+      <h3 className="text-lg text-center py-3">Ask about a player profile</h3>
       <form className="flex flex-col space-y-3" onSubmit={fetchData}>
         <input
-          className="border-2"
+          className="border-2 p-1"
           type="text"
           onChange={(e) => {
             setInput(e.target.value);
@@ -56,12 +56,12 @@ export default function Oasis() {
 
       {name && (
         <ul className="mt-6">
-          <li className="border-2">Name: {name}</li>
-          <li className="border-2">Born: {born}</li>
-          <li className="border-2">Country: {country}</li>
-          <li className="border-2">Achievments: </li>
+          <li className="border-2 p-1">Name: {name}</li>
+          <li className="border-2 p-1">Born: {born}</li>
+          <li className="border-2 p-1">Country: {country}</li>
+          <li className="border-2 p-1">Achievments: </li>
           {achievments.map((e, index) => {
-            return <li className="border-2" key={index}>{e.title}</li>;
+            return <li className="border-2 p-1" key={index}>{e.title}</li>;
           })}
         </ul>
       )}

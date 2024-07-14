@@ -7,7 +7,7 @@ export default function Card(props) {
     <Link to={"/clubs/" + id}>
       <div className="flex flex-col justify-between items-center w-64 h-64 p-4 border-2 border-slate-400 rounded-md hover:bg-sky-400 hover:opacity-70 hover:scale-105">
         <div>
-          <img src={logoImg} alt="league's logo" className="object-cover" />
+          <img src={logoImg} alt="league's logo" className="h-40 object-cover" />
         </div>
         <div className="flex flex-col items-center justify-center">
           <div className="font-bold text-lg">

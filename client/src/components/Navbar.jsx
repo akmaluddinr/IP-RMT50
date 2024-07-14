@@ -71,6 +71,18 @@ export default function Navbar() {
             OASIS
           </NavLink>
         </div>
+        <div>
+          <NavLink
+            to="/myclubs"
+            className={({ isActive }) =>
+              isActive
+                ? "font-semibold tracking-wider uppercase text-violet-700 px-2 hover:text-violet-700"
+                : "font-semibold tracking-wider uppercase text-slate-800 px-2 hover:text-violet-700"
+            }
+          >
+            My Clubs
+          </NavLink>
+        </div>
       </div>
 
       <div>
